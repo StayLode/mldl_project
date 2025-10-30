@@ -27,18 +27,13 @@ The project uses the **Tiny ImageNet** dataset, which contains 200 classes, each
 
 To download and extract the dataset, run the following commands (for example, in Google Colab):
 ```bash
-!wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
-!unzip tiny-imagenet-200.zip -d tiny-imagenet
+wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+unzip tiny-imagenet-200.zip -d tiny-imagenet
 ```
 
 After extraction, the dataset will be located at:
 ```
 tiny-imagenet/tiny-imagenet-200/
-```
-
-Run the following script to organize the validation images into class-specific folders:
-```bash
-python data/dataset_setup.py
 ```
 
 ---
@@ -67,7 +62,7 @@ python data/dataset_setup.py
 
 To start the training process, run:
 ```bash
-python train.py
+python3 train.py
 ```
 
 This script:
@@ -84,7 +79,7 @@ The best validation accuracy achieved during training is printed at the end.
 
 To evaluate a trained model, run:
 ```bash
-python eval.py
+python3 eval.py
 ```
 
 This script loads the most recent checkpoint from `checkpoints/` and computes classification accuracy on the validation set.

@@ -9,17 +9,15 @@ def prepare_tiny_imagenet(root_dir='tiny-imagenet/tiny-imagenet-200'):
     val_annot = os.path.join(root_dir, 'val', 'val_annotations.txt')
 
     # Create class subfolders for validation
-    with open(val_annot) as f:
+    with open('tiny-imagenet/tiny-imagenet-200/val/val_annotations.txt') as f:
         for line in f:
             fn, cls, *_ = line.split('\t')
-            os.makedirs(os.path.join(root_dir, 'val', cls), exist_ok=True)
-            shutil.copyfile(
-                os.path.join(root_dir, 'val', 'images', fn),
-                os.path.join(root_dir, 'val', cls, fn)
-            )
+            os.makedirs(f'tiny-imagenet/tiny-imagenet-200/val/{cls}', exist_ok=True)
 
-    shutil.rmtree(os.path.join(root_dir, 'val', 'images'))
+            shutil.copyfile(f'tiny-imagenet/tiny-imagenet-200/val/images/{fn}', f'tiny-imagenet/tiny-imagenet-200/val/{cls}/{fn}')
 
+    shutil.rmtree('tiny-imagenet/tiny-imagenet-200/val/images')
+    
     transform = T.Compose([
         T.Resize((224, 224)),
         T.ToTensor(),

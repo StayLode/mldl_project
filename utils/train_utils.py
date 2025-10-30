@@ -5,7 +5,8 @@ def train_one_epoch(epoch, model, train_loader, criterion, optimizer):
     running_loss, correct, total = 0.0, 0, 0
 
     for inputs, targets in train_loader:
-        inputs, targets = inputs.cuda(), targets.cuda()
+        if torch.cuda.is_available():
+            inputs, targets = inputs.cuda(), targets.cuda()
 
         optimizer.zero_grad()
         outputs = model(inputs)

@@ -10,7 +10,10 @@ def main():
     train_loader, val_loader = prepare_tiny_imagenet()
 
     # Model, loss, optimizer
-    model = CustomNet().cuda()
+    if torch.cuda.is_available():
+        model = CustomNet().cuda()
+    else:
+        model = CustomNet()
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 
